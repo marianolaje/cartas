@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, Fragment} from 'react';
+import { useTranslation } from 'react-i18next';
+// import styled from '@emotion/styled';
 
-function App() {
+// const Nav = styled.nav`
+//   width: 100%;
+//   padding: 2rem 0;
+//   background-color: gray;
+// `
+
+function App(){
+  const { t, i18n } = useTranslation();
+
+  function handleClick(lang){
+    i18n.changeLanguage(lang);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Fragment>
+      <nav>
+        <button onClick={()=>handleClick('en')}>
+          English
+        </button>
+        <button onClick={()=>handleClick('es')}>
+          Español
+        </button>
+        <button onClick={()=>handleClick('de')}>
+          Deutch
+        </button>
+      </nav>
+      <header>
+        <p>{t('text.1')}</p>
+        <p>{t('why.1')}</p>
       </header>
-    </div>
+    </Fragment>
   );
 }
 
